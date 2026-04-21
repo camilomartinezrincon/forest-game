@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import "../src/styles/Navbar.css";
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/intro" element={<Intro />} />
           <Route path="/game" element={<Game />} />
         </Routes>
+        <Footer />  
       </BrowserRouter>
     </>
   );
