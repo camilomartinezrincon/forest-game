@@ -1,4 +1,4 @@
-/* ── Custom Fonts ── */
+
 @font-face {
   font-family: "DFVN Rawrote";
   src: url("./assets/fonts/DFVNRawrote/DFVNRawrote.otf") format("opentype"),
@@ -7,10 +7,9 @@
   font-style: normal;
 }
 
-/* ── Google Font: Della Respira ── */
+
 @import url("https://fonts.googleapis.com/css2?family=Della+Respira&display=swap");
 
-/* ── CSS Variables ── */
 :root {
   --primary: #3a3f59;
   --primary-light: rgba(58, 63, 89, 0.75);
