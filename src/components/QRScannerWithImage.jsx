@@ -28,6 +28,8 @@ function QRScannerWithImage() {
     setScannedData(null);
     setImageSrc(null);
     setShowScanner(true);
+
+    console.log("im here!!");
   };
 
   if (!showScanner) {
