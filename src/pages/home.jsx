@@ -1,55 +1,46 @@
 import "../styles/home.css";
+
 import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
 
-  const handlePlayNow = () => {
-    navigate("/intro");
-  };
-
   return (
     <div className="home-container">
-      <div className="home-content">
-        <h1 className="game-title">GAME TITLE</h1>
+
+  
+      <div className="home-hero">
+        <h1 className="game-title">FOREST RULES</h1>
         <p className="game-description">
-          Short description about the game
-          <br />
-          Once upon a time there's a mockup text right here
+          In a northern Canadian fly in camp, a group of foresters slowly discovers that someone in their midst is planning to use the isolation of the forest to their sinister advantage.
+  
         </p>
-        <button className="play-button" onClick={handlePlayNow}>
+        <button className="play-button" onClick={() => navigate("/intro")}>
           PLAY NOW
         </button>
       </div>
 
+ <div className="section-divider" />
+
+      
       <div className="how-to-play">
         <h2>HOW TO PLAY</h2>
         <div className="steps-container">
-          <div className="step">
-            <div className="step-number">STEP1</div>
-            <p>Scan the card using the camera</p>
-          </div>
-          <div className="step">
-            <div className="step-number">STEP2</div>
-            <p>Drag the image to your concluded slot</p>
-          </div>
-          <div className="step">
-            <div className="step-number">STEP3</div>
-            <p>Check if your conclusion is correct</p>
-          </div>
-          <div className="step">
-            <div className="step-number">STEP4</div>
-            <p>
-              Modifying your choice after the review until you finish the
-              correct order
-            </p>
-          </div>
-          <div className="step">
-            <div className="step-number">STEP5</div>
-            <p>You've completed a chapter!</p>
-          </div>
+          {[
+            { n: "STEP 1", t: "Scan the card using the camera" },
+            { n: "STEP 2", t: "Drag the image to your concluded slot" },
+            { n: "STEP 3", t: "Check if your conclusion is correct" },
+            { n: "STEP 4", t: "Modify your choice after the review until you get the correct order" },
+            { n: "STEP 5", t: "You've completed a chapter!" },
+          ].map((s, i) => (
+            <div className="step" key={i}>
+              <div className="step-number">{s.n}</div>
+              <p>{s.t}</p>
+            </div>
+          ))}
         </div>
       </div>
+
     </div>
   );
 }
