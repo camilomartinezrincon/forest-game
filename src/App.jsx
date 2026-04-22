@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -10,6 +8,8 @@ import About from "./pages/about";
 import CamaraScanner from "./components/Camara";
 import Intro from "./pages/intro";
 import Game from "./pages/game";
+import ChapterComplete from "./pages/ChapterComplete";
+import GameComplete from "./pages/GameComplete";
 
 function App() {
   return (
@@ -23,8 +23,10 @@ function App() {
           <Route path="/camera" element={<CamaraScanner />} />
           <Route path="/intro" element={<Intro />} />
           <Route path="/game" element={<Game />} />
+          <Route path="/chapter-complete" element={<ChapterComplete />} />
+          <Route path="/game-complete" element={<GameComplete />} />
         </Routes>
-        <Footer />  
+        <Footer />
       </BrowserRouter>
     </>
   );

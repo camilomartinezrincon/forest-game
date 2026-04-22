@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/Camara.css";
 
-function CamaraScanner({ onScan, onNext }) {
+function CamaraScanner({ onScan }) {
   const videoRef = useRef(null);
   const audioRef = useRef(null);
   const [scanned, setScanned] = useState(false);
   const [audioSrc, setAudioSrc] = useState(null);
   const jsqrLoadedRef = useRef(false);
+  const currentAudioRef = useRef(null);
 
   useEffect(() => {
     let stream;
@@ -21,10 +22,9 @@ function CamaraScanner({ onScan, onNext }) {
           videoRef.current.srcObject = stream;
           videoRef.current.setAttribute("playsinline", true);
           await videoRef.current.play();
-          console.log("Cámara iniciada");
         }
       } catch (error) {
-        console.error("Error accediendo a la cámara:", error);
+        console.error("Error turning on the camera:", error);
       }
     };
 
@@ -76,34 +76,39 @@ function CamaraScanner({ onScan, onNext }) {
           inversionAttempts: "dontInvert",
         });
 
-        if (code && !scanned) {
+        if (code) {
           const qrValue = code.data.toLowerCase();
-          console.log("QR detectado:", qrValue);
 
           import(`../assets/${qrValue}.mp3`)
             .then((module) => {
-              setAudioSrc(module.default);
-              console.log("Audio encontrado:", qrValue);
+              const newAudioSrc = module.default;
+              setAudioSrc(newAudioSrc);
               setScanned(true);
+
+              if (currentAudioRef.current) {
+                currentAudioRef.current.pause();
+                currentAudioRef.current.currentTime = 0;
+              }
 
               setTimeout(() => {
                 if (audioRef.current) {
+                  audioRef.current.load();
                   audioRef.current.play().catch((err) => {
-                    console.error("Error reproduciendo audio:", err);
+                    console.error("Error playing the audio:", err);
                   });
                 }
-              }, 100);
+              }, 50);
 
               if (onScan) {
                 onScan(qrValue);
               }
             })
             .catch((error) => {
-              console.error("Audio no encontrado:", qrValue, error);
+              console.error("Audio not found:", qrValue, error);
             });
         }
       } catch (err) {
-        console.error("Error escaneando:", err);
+        console.error("Error scanning:", err);
       }
 
       animationId = requestAnimationFrame(scanQRCode);
@@ -117,13 +122,7 @@ function CamaraScanner({ onScan, onNext }) {
         cancelAnimationFrame(animationId);
       }
     };
-  }, [scanned, onScan]);
-
-  const handleNext = () => {
-    if (onNext) {
-      onNext();
-    }
-  };
+  }, [onScan]);
 
   return (
     <div className="qr-page">
@@ -133,14 +132,17 @@ function CamaraScanner({ onScan, onNext }) {
         </div>
 
         {scanned && (
-          <>
-            <div className="audio-wrapper">
-              <audio ref={audioRef} src={audioSrc} controls autoPlay />
-            </div>
-            <button className="next-button" onClick={handleNext}>
-              NEXT
-            </button>
-          </>
+          <div className="audio-wrapper">
+            <audio
+              ref={(el) => {
+                audioRef.current = el;
+                currentAudioRef.current = el;
+              }}
+              src={audioSrc}
+              controls
+              autoPlay
+            />
+          </div>
         )}
       </div>
     </div>

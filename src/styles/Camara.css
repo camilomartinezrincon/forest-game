@@ -42,24 +42,38 @@
   width: 100%;
 }
 
-.next-button {
-  display: block;
-  width: calc(100% - 48px);
-  margin: 0 24px 24px;
-  background: #1a1a1a;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 40px;
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    background 0.2s;
+.images-gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 20px;
+  padding: 20px;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.next-button:hover {
-  background: #333;
-  transform: scale(1.02);
+.image-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 720px;
+  max-width: 100%;
+}
+
+.scanned-image {
+  width: 100%;
+  height: auto;
+  max-width: 720px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-label {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
 }

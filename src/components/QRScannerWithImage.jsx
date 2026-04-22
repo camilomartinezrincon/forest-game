@@ -1,51 +1,132 @@
-import { useState } from "react";
+import { useRef } from "react";
 import CamaraScanner from "./Camara";
 
-function QRScannerWithImage() {
-  const [scannedData, setScannedData] = useState(null);
-  const [imageSrc, setImageSrc] = useState(null);
-  const [showScanner, setShowScanner] = useState(true);
+function QRScannerWithImage({
+  onScan,
+  scannedImages = [],
+  userOrder = {},
+  onOrderChange,
+}) {
+  const processingRef = useRef(false);
 
   const handleScan = async (qrValue) => {
-    setScannedData(qrValue);
+    if (processingRef.current) return;
+
+    const alreadyScanned = scannedImages.some(
+      (item) => item.qrValue === qrValue,
+    );
+
+    if (alreadyScanned) {
+      console.log("Already scanned:", qrValue);
+      return;
+    }
+
+    processingRef.current = true;
+
+    let imageUrl = null;
 
     try {
       const imageModule = await import(`../assets/img/${qrValue}.jpg`);
-      setImageSrc(imageModule.default);
-    } catch (error) {
-      console.error("Image not found:", qrValue, error);
+      imageUrl = imageModule.default;
+    } catch {
       try {
         const imageModule = await import(`../assets/img/${qrValue}.png`);
-        setImageSrc(imageModule.default);
+        imageUrl = imageModule.default;
       } catch {
-        console.error("Image not found in jpg or png:", qrValue);
-        setImageSrc(null);
+        imageUrl = null;
       }
+    }
+
+    if (onScan) {
+      onScan(qrValue, imageUrl);
+    }
+
+    setTimeout(() => {
+      processingRef.current = false;
+    }, 500);
+  };
+
+  const handleRadioChange = (qrValue, value) => {
+    if (onOrderChange) {
+      onOrderChange(qrValue, value);
     }
   };
 
-  const handleNext = () => {
-    setScannedData(null);
-    setImageSrc(null);
-    setShowScanner(true);
-
-    console.log("im here!!");
-  };
-
-  if (!showScanner) {
-    return null;
-  }
-
   return (
-    <div className="qr-scanner-container">
-      <CamaraScanner onScan={handleScan} onNext={handleNext} />
-
-      {scannedData && imageSrc && (
-        <div className="image-result">
-          <h2>Scanned content: {scannedData}</h2>
-          <img src={imageSrc} alt={scannedData} className="scanned-image" />
-        </div>
-      )}
+    <div style={{ width: "100%", minHeight: "100vh" }}>
+      <CamaraScanner onScan={handleScan} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "60px",
+          marginTop: "40px",
+          padding: "20px",
+        }}
+      >
+        {scannedImages.map((item) => (
+          <div
+            key={item.id}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            {item.imageSrc && (
+              <img
+                src={item.imageSrc}
+                alt={item.qrValue}
+                style={{
+                  width: "300px",
+                  height: "300px",
+                  objectFit: "cover",
+                  borderRadius: "8px",
+                  boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                }}
+              />
+            )}
+            <div
+              style={{
+                display: "flex",
+                gap: "20px",
+                marginTop: "15px",
+              }}
+            >
+              {[1, 2, 3, 4].map((num) => (
+                <label
+                  key={num}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "5px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name={`order-${item.qrValue}`}
+                    value={num}
+                    checked={userOrder[item.qrValue] === num}
+                    onChange={() => handleRadioChange(item.qrValue, num)}
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      cursor: "pointer",
+                    }}
+                  />
+                  <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+                    {num}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
