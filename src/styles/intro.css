@@ -53,21 +53,18 @@
   margin: 0 auto 28px;
 }
 
-/* .intro-subtitle {
+.intro-subtitle {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: var(--white);
-  opacity: 0.6;
-  line-height: 1.7;
-  margin-bottom: 36px;
-} */
+  opacity: 0.9;
+}
 
 
 .audio-wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
 }
 
 .audio-player {

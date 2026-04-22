@@ -36,7 +36,7 @@
   font-family: var(--font-title);
   font-size: 1.1rem;
   letter-spacing: 3px;
-  color: #cecece;
+  color: #e6e3e3;
   text-decoration: none;
   text-transform: uppercase;
   transition: opacity 0.2s ease;
@@ -58,7 +58,7 @@
   font-family: var(--font-title);
   font-size: 1.2rem;
   letter-spacing: 2px;
-  color: #cecece;
+  color: #e6e3e3;
   text-decoration: none;
   text-transform: uppercase;
   transition: opacity 0.2s ease;
@@ -83,4 +83,9 @@
 
 .navbar-menu a:hover::after {
   width: 100%;
+}
+
+body:has(.game-container) .navbar-logo,
+body:has(.game-container) .navbar-menu a {
+  color: #3a3f59; 
 }

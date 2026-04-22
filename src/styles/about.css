@@ -9,7 +9,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 24px 80px;
+  padding: 60px 24px 40px;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* Dark overlay */
@@ -41,10 +43,10 @@
 
 .about-subtitle {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--white);
   text-align: center;
-  opacity: 0.75;
+  opacity: 0.9;
   margin-bottom: 60px;
   letter-spacing: 1px;
 }
@@ -57,7 +59,7 @@
   color: var(--white);
   text-transform: uppercase;
   text-align: center;
-  opacity: 0.6;
+  opacity: 0.9;
   margin-bottom: 24px;
 }
 
@@ -80,7 +82,7 @@
 
 .team-heading {
   font-family: var(--font-title);
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   letter-spacing: 4px;
   color: var(--white-pure);
   text-align: center;
@@ -114,7 +116,7 @@
 
 .member-name {
   font-family: var(--font-title);
-  font-size: 1rem;
+  font-size: 1.1rem;
   letter-spacing: 2px;
   color: var(--white-pure);
   margin-bottom: 8px;
@@ -122,9 +124,9 @@
 
 .member-role {
   font-family: var(--font-body);
-  font-size: 0.82rem;
+  font-size: 1rem;
   color: var(--white);
-  opacity: 0.65;
+  opacity: 0.85;
   line-height: 1.6;
 }
 
@@ -133,7 +135,7 @@
   font-family: var(--font-body);
   font-size: 0.95rem;
   color: var(--white);
-  opacity: 0.7;
+  opacity: 0.9;
   margin-bottom: 48px;
   letter-spacing: 0.3px;
 }
