@@ -1,0 +1,91 @@
+
+:root {
+  --navbar-height: 80px;
+  --font-title: "DFVN Rawrote", serif;
+  --font-ui: "Inter", system-ui, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  z-index: 1000;
+  background: transparent; 
+  display: flex;
+  align-items: center;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 50px;
+}
+
+
+.navbar-logo {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  color: #e6e3e3;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+}
+
+.navbar-logo:hover {
+  opacity: 0.75;
+}
+
+/* ── Rright side nav ── */
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  align-items: center;
+}
+
+.navbar-menu a {
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  color: #e6e3e3;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+  position: relative;
+}
+
+
+.navbar-menu a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: #cecece;
+  transition: width 0.25s ease;
+}
+
+.navbar-menu a:hover {
+  opacity: 0.75;
+}
+
+.navbar-menu a:hover::after {
+  width: 100%;
+}
+
+body:has(.game-container) .navbar-logo,
+body:has(.game-container) .navbar-menu a {
+  color: #3a3f59; 
+}

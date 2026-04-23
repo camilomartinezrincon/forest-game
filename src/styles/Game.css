@@ -1,0 +1,143 @@
+.game-container {
+  min-height: 100vh;
+  padding: 20px 16px 0;
+  overflow: hidden;
+  background: #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.game-header h1 {
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+}
+
+.chapter-display {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #2c5f2d;
+  background: white;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.game-instruction {
+  text-align: center;
+  margin-top: 16px;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.game-instruction p {
+  margin: 4px 0;
+}
+
+.scanned-list {
+  margin-top: 8px;
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.scanned-card {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.drag-drop-area {
+  background: white;
+  border-radius: 20px;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.drag-drop-area h3 {
+  margin-bottom: 16px;
+  color: #1a1a1a;
+  font-size: 1.2rem;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 8px
+}
+
+.draggable-card {
+  background: #1a1a1a;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: grab;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.draggable-card:active {
+  cursor: grabbing;
+}
+
+.draggable-card:hover {
+  transform: scale(1.01);
+}
+
+.result-card {
+  background: #2c5f2d;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.check-button,
+.next-chapter-button {
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 40px;
+  cursor: pointer;
+  width: 100%;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.check-button:hover,
+.next-chapter-button:hover {
+  background: #333;
+  transform: scale(1.01);
+}
+
+.result-area {
+  background: white;
+  border-radius: 20px;
+  padding: 12px;
+  margin-top: 10px 
+}
+
+.result-area h3 {
+  margin-bottom: 16px;
+  color: #1a1a1a;
+  font-size: 1.2rem;
+}
+
+.result-message {
+  margin-top: 10px;
+}
