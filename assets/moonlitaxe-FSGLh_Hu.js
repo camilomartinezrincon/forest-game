@@ -1,0 +1,1 @@
+var e=`/forest-game/assets/moonlitaxe-DV_3F5K0.mp3`;export{e as default};

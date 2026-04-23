@@ -1,0 +1,1 @@
+var e=`/forest-game/assets/cliffedgestruggle-ByqZgzhv.jpg`;export{e as default};

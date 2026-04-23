@@ -1,0 +1,1 @@
+var e=`/forest-game/assets/deadmoose-Uu5KnItw.mp3`;export{e as default};

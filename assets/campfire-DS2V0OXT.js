@@ -1,0 +1,1 @@
+var e=`/forest-game/assets/campfire-CHjX57Zk.jpg`;export{e as default};

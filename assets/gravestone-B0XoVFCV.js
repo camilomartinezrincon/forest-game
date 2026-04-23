@@ -1,0 +1,1 @@
+var e=`/forest-game/assets/gravestone-BwrRakdj.mp3`;export{e as default};

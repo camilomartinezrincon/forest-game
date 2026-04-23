@@ -1,0 +1,1 @@
+var e=`/forest-game/assets/axe-CKrMLUTz.jpg`;export{e as default};

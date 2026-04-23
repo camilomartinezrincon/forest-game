@@ -1,0 +1,1 @@
+var e=`/forest-game/assets/background-Ce3DeQzO.jpg`;export{e as default};

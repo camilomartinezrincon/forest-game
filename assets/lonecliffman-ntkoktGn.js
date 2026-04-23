@@ -1,0 +1,1 @@
+var e=`/forest-game/assets/lonecliffman-Dx-MQnvh.mp3`;export{e as default};

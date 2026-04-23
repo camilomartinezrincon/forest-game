@@ -1,0 +1,1 @@
+var e=`/forest-game/assets/gravestone-D0rIwziG.jpg`;export{e as default};

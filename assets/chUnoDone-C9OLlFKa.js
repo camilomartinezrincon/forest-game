@@ -1,0 +1,1 @@
+var e=`/forest-game/assets/chUnoDone-DmLzsNyD.mp3`;export{e as default};

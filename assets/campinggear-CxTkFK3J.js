@@ -1,0 +1,1 @@
+var e=`/forest-game/assets/campinggear-BQCmaQp2.jpg`;export{e as default};
