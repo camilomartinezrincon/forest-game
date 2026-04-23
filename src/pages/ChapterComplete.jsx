@@ -2,11 +2,16 @@ import { useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/ChapterComplete.css";
 
+import chUnoDone from "../assets/chUnoDone.mp3";
+import chDosDone from "../assets/chDosDone.mp3";
+import chTresDone from "../assets/chTresDone.mp3";
+
 function ChapterComplete() {
   const navigate = useNavigate();
   const location = useLocation();
   const { chapter, chapterAudio, isLastChapter } = location.state || {};
   const audioRef = useRef(null);
+  const completionAudioRef = useRef(null);
 
   const getChapterNumber = () => {
     switch (chapter) {
@@ -21,12 +26,44 @@ function ChapterComplete() {
     }
   };
 
+  const getCompletionAudio = () => {
+    switch (chapter) {
+      case "helicopterview":
+        return chUnoDone;
+      case "cliffedgestruggle":
+        return chDosDone;
+      case "letterhead":
+        return chTresDone;
+      default:
+        return null;
+    }
+  };
+
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.play().catch((err) => {
-        console.error("Error playing audio:", err);
+    if (completionAudioRef.current) {
+      completionAudioRef.current.play().catch((err) => {
+        console.error("Error playing completion audio:", err);
       });
     }
+
+    const completionAudio = completionAudioRef.current;
+    const handleCompletionEnd = () => {
+      if (audioRef.current) {
+        audioRef.current.play().catch((err) => {
+          console.error("Error playing chapter audio:", err);
+        });
+      }
+    };
+
+    if (completionAudio) {
+      completionAudio.addEventListener("ended", handleCompletionEnd);
+    }
+
+    return () => {
+      if (completionAudio) {
+        completionAudio.removeEventListener("ended", handleCompletionEnd);
+      }
+    };
   }, []);
 
   const handleNext = () => {
@@ -45,13 +82,18 @@ function ChapterComplete() {
           You have successfully completed: {getChapterNumber()}
         </p>
 
+        <audio
+          ref={completionAudioRef}
+          src={getCompletionAudio()}
+          style={{ display: "none" }}
+        />
+
         <div className="chapter-audio-section">
           <h3>Listen to the full chapter audio:</h3>
           <audio
             ref={audioRef}
             src={chapterAudio}
             controls
-            autoPlay
             className="chapter-audio"
           />
         </div>
